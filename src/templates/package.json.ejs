@@ -1,0 +1,20 @@
+{
+  "name": "dashboard_kit",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "config" : { "db" : "<%= props.db %>" },
+  "scripts": {
+    "dev:lambda": "netlify dev -f functions/routes",
+    "start:lambda": "netlify-lambda serve functions/routes",
+    "build:lambda": "netlify-lambda build functions/routes"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^6.2.0",
+    "mongoose": "^5.4.0",
+    "netlify": "^2.4.6",
+    "netlify-lambda": "^1.4.13"
+  }
+}

@@ -1,0 +1,23 @@
+require('dotenv').config();
+
+const mongoose = require('mongoose');
+
+
+mongoose.connect(
+  process.env.MONGODB_URL,
+  { useNewUrlParser: true },
+);
+
+const <%= props.title %>Schema = new mongoose.Schema(
+  {
+    <% props.data.map((item)=>{%>
+      <%= item.match(/[^:]*/i)[0] %>: {
+        type: <%= item.match(/[^:]+$/i)[0].charAt(0).toUpperCase() + item.match(/[^:]+$/i)[0].slice(1) %>
+      },
+    <%}) %>
+  },
+  { timestamps: true }, // adds createdAt and updatedAt automatic fields
+);
+
+
+module.exports = mongoose.models.<%= props.title %> || mongoose.model('<%= props.title %>', <%= props.title %>Schema);

@@ -1,0 +1,51 @@
+require('dotenv').config();
+
+<% if(props.db === 'mongodb') { %>
+const <%= props.title.charAt(0).toUpperCase() + props.title.slice(1) %> = require('../models/<%= props.title.charAt(0).toUpperCase() + props.title.slice(1) %>');
+<% } %>
+const validateHttpMethod = require('../utils/validateHttpMethod');
+
+exports.handler = async (event, context) => {
+  try {
+    await validateHttpMethod(event, ['<%= props.method %>', 'OPTIONS']);
+    
+    ///// HANDLES PREFLIGHT REQUEST FOR CORS ISSUE
+    if(event.httpMethod === 'OPTIONS') {
+      return {
+        statusCode: 200,
+        headers:    {
+          'Cache-Control': 'no-store', // prevent caching of response
+          'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept',
+          'Content-Type': 'application/json',
+          'Access-Control-Allow-Methods': '*',
+          'Access-Control-Allow-Credentials': 'true'
+        },
+        body: ''
+      };
+    }
+    /////////////////
+
+    return {
+      statusCode: 201,
+      body: '',
+      headers:    {
+        'Cache-Control': 'no-store', // prevent caching of response
+        Pragma:          'no-cache', // prevent caching of response
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept',
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Methods': '*',
+        'Access-Control-Max-Age': '2592000',
+        'Access-Control-Allow-Credentials': 'true'
+      }
+    };
+  } catch (error) {
+
+    return {
+      statusCode: error.statusCode || 500,
+      headers:    error.headers || {},
+      body:       JSON.stringify(error.message),
+    };
+  }
+};

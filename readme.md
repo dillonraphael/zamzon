@@ -14,8 +14,6 @@ $ npm publish
 
 # Zamzon
 
-<!-- ![gluegun](https://user-images.githubusercontent.com/1479215/50237287-5a23e380-0371-11e9-89ea-85b41cd25217.jpg) -->
-
 Zamzon is a CLI tool that helps initialize projects that work with Netlify. Connect a datasource, scaffold CRUD routes and work with any static generator.
 
 
@@ -39,6 +37,11 @@ zamzon start or yarn dev:lambda
 ```shell
 zamzon init <project>
 ```
+
+**Choosing a datasource:**<br>
+Currently, only mongodb is supported.<br>
+There are plans to add more in the future.<br>
+Not selecting a datasource is totally acceptable.
 ## generate
 
 Generate functions:

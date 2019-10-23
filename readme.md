@@ -22,7 +22,6 @@ Zamzon is a CLI tool that helps initialize projects that work with Netlify. Conn
 
 ```shell
 yarn global add zamzon
-cd Desktop
 zamzon init ProjectName
 cd ProjectName
 zamzon g scaffold Todo
@@ -46,21 +45,26 @@ Not selecting a datasource is totally acceptable.
 
 Generate functions:
 
-**scaffold**
+### scaffold
 ```shell
 zamzon generate scaffold Todo title:string done:boolean
 ```
 
-**route**
+When you have your datasource set to mongodb, the scaffold will make a model file, in this case named Todo. It will parse the following parameters and create a schema for you automatically.<br>
+If no datasource is set, it will skip making a model file.
+
+### route
 ```shell
 zamzon generate route sendemail
 ```
-## start
 
-Runs the server in dev mode
+Sometimes you don't need every route scaffolding supplies. So you can generate a single route. **Don't use spaces or special characters. An update will come soon with validation**
+
+## start
 
 ```shell
 zamzon start
 ```
 
+Runs the server in dev mode. Must be in the root of the directory of your project.
 

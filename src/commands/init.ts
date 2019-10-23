@@ -40,7 +40,8 @@
         ],
       })
 
-      await system.exec("yarn", {cwd: name});
+      const yarnOrNpm = await system.which('yarn') ? 'yarn' : 'npm'
+      await system.exec(`${yarnOrNpm} install`, {cwd: name});
 
 
       let url = ''

@@ -13,12 +13,11 @@
       } = toolbox
   
       
-      success("Zamzon is starting your server at http://localhost:8888")
-
-      const hasYarn = filesystem.exists('yarn.lock')
-
-
-      await system.run(hasYarn ? 'yarn dev:lambda' : 'npm run dev:lambda')
+      const yarnOrNpm = system.which('yarn') ? 'yarn' : 'npm'
+      await system.spawn(`${yarnOrNpm} run dev:lambda`, {
+        shell: true,
+        stdio: 'inherit',
+      })
 
       
   

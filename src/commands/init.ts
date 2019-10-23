@@ -28,7 +28,7 @@
         }
       }
 
-      await filesystem.dir(name)
+      filesystem.dir(name)
 
       const { dbtype } = await prompt.ask({
         type: 'select',
@@ -40,8 +40,11 @@
         ],
       })
 
-      const yarnOrNpm = await system.which('yarn') ? 'yarn' : 'npm'
-      await system.exec(`${yarnOrNpm} install`, {cwd: name});
+      const yarnOrNpm = system.which('yarn') ? 'yarn' : 'npm'
+      await system.spawn(`cd ${name} && ${yarnOrNpm} install`, {
+        shell: true,
+        stdio: 'inherit',
+      })
 
 
       let url = ''

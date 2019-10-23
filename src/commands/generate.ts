@@ -29,7 +29,7 @@ module.exports = {
       } else {
 
 
-        //If db is set to mongodb in config, create the model
+        // If db is set to mongodb in config, create the model
         if(db.config.db === 'mongodb') {
 
           await generate({

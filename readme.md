@@ -66,5 +66,7 @@ Sometimes you don't need every route scaffolding supplies. So you can generate a
 zamzon start
 ```
 
-Runs the server in dev mode. Must be in the root of the directory of your project.
+Runs the server in dev mode. Must be in the root of the directory of your project.<br>
+<br>
+You can access your functions at `/.netlify/functions/`
 

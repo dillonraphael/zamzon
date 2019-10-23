@@ -7,14 +7,12 @@
     alias: ['s', 'dev'],
     run: async (toolbox: GluegunToolbox) => {
       const {
-        print: {success},
-        system,
-        filesystem
+        system
       } = toolbox
   
       
       const yarnOrNpm = system.which('yarn') ? 'yarn' : 'npm'
-      await system.spawn(`${yarnOrNpm} run dev:lambda`, {
+      await system.spawn(`${yarnOrNpm} install && ${yarnOrNpm} run dev:lambda`, {
         shell: true,
         stdio: 'inherit',
       })

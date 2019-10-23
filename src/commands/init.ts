@@ -12,6 +12,7 @@
         filesystem,
         print: { info, error },
         prompt,
+        system
       } = toolbox
   
       const name = parameters.first
@@ -27,7 +28,7 @@
         }
       }
 
-      filesystem.dir(name)
+      await filesystem.dir(name)
 
       const { dbtype } = await prompt.ask({
         type: 'select',
@@ -38,6 +39,9 @@
           'None'
         ],
       })
+
+      await system.exec("yarn", {cwd: name});
+
 
       let url = ''
 
@@ -74,6 +78,7 @@
         props: url && {dburl: url}
       })
       
+
   
     },
   }
